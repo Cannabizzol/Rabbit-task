@@ -79,6 +79,9 @@ framework:
             failed:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
                 options:
+                    exchange:
+                        name: failed_exchange
+                        type: direct
                     queue:
                         name: failed_messages_queue
 
