@@ -10,8 +10,96 @@
     <option name="highlightLevel" value="WARNING" />
     <option name="transferred" value="true" />
   </component>
+  <component name="PhpCodeSniffer">
+    <phpcs_settings>
+      <phpcs_by_interpreter asDefaultInterpreter="true" interpreter_id="0f592847-31a0-4efa-aec0-4d0c4e5a8370" timeout="30000" />
+    </phpcs_settings>
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/dependency-injection" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/flex" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/framework-bundle" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/dotenv" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/composer" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/runtime" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/polyfill-php83" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/my_project_directory/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/dependency-injection" />
+      <path value="$PROJECT_DIR$/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/vendor/symfony/flex" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/framework-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/vendor/symfony/dotenv" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/vendor/symfony/maker-bundle" />
+      <path value="$PROJECT_DIR$/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/vendor/symfony/runtime" />
+      <path value="$PROJECT_DIR$/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php83" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
+  <component name="PhpStan">
+    <PhpStan_settings>
+      <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="0f592847-31a0-4efa-aec0-4d0c4e5a8370" timeout="60000" />
+    </PhpStan_settings>
+  </component>
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
+  </component>
+  <component name="Psalm">
+    <Psalm_settings>
+      <psalm_fixer_by_interpreter asDefaultInterpreter="true" interpreter_id="0f592847-31a0-4efa-aec0-4d0c4e5a8370" timeout="60000" />
+    </Psalm_settings>
   </component>
   <component name="PsalmOptionsConfiguration">
     <option name="transferred" value="true" />
