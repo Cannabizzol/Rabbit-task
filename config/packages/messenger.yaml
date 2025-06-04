@@ -1,0 +1,57 @@
+framework:
+    messenger:
+        transports:
+            support_tech:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    exchange:
+                        name: support_topic_exchange
+                        type: topic
+                    queue:
+                        name: support_tech_queue
+                    routing_key: 'support.tech.high'
+
+            support_finance:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    exchange:
+                        name: support_topic_exchange
+                        type: topic
+                    queue:
+                        name: support_finance_queue
+                    routing_key: 'support.finance.low'
+
+            support_management:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    exchange:
+                        name: support_topic_exchange
+                        type: topic
+                    queue:
+                        name: support_management_queue
+                    routing_key: 'support.management.*'
+
+            support_fanout:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    exchange:
+                        name: support_fanout_exchange
+                        type: fanout
+                    queue:
+                        name: support_logger_queue
+
+            support_fanout_telegram:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    exchange:
+                        name: support_fanout_exchange
+                        type: fanout
+                    queue:
+                        name: support_telegram_queue
+        routing:
+            'App\Message\SupportRequestMessage':
+                - support_tech
+                - support_finance
+                - support_management
+                - support_fanout
+                - support_fanout_telegram
