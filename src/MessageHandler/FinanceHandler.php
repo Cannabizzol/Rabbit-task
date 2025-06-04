@@ -9,6 +9,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 class FinanceHandler
 {
+
     public function __construct(
         private SupportRequestMessageLoader $supportRequestMessageLoader
     )

@@ -12,7 +12,8 @@ class LoggerHandler
 {
     public function __construct(
         private LoggerInterface $logger,
-        private SupportRequestMessageLoader $supportRequestMessageLoader)
+        private SupportRequestMessageLoader $supportRequestMessageLoader
+    )
     {
     }
     public function __invoke(SupportRequestMessage $message)

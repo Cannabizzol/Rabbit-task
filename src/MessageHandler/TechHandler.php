@@ -17,7 +17,6 @@ class TechHandler
     public function __invoke(SupportRequestMessage $message)
     {
         $messageFromBd = $this->supportRequestMessageLoader->load($message->requestId);
-
     }
 
 }
