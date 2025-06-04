@@ -1,5 +1,7 @@
 framework:
     messenger:
+        failure_transport: failed
+
         transports:
             support_tech:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
@@ -10,6 +12,11 @@ framework:
                     queue:
                         name: support_tech_queue
                     routing_key: 'support.tech.high'
+                retry_strategy:
+                    max_retries: 3
+                    delay: 1000
+                    multiplier: 2
+                    max_delay: 0
 
             support_finance:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
@@ -20,6 +27,11 @@ framework:
                     queue:
                         name: support_finance_queue
                     routing_key: 'support.finance.low'
+                retry_strategy:
+                    max_retries: 3
+                    delay: 1000
+                    multiplier: 2
+                    max_delay: 0
 
             support_management:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
@@ -30,6 +42,11 @@ framework:
                     queue:
                         name: support_management_queue
                     routing_key: 'support.management.*'
+                retry_strategy:
+                    max_retries: 3
+                    delay: 1000
+                    multiplier: 2
+                    max_delay: 0
 
             support_fanout:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
@@ -39,6 +56,11 @@ framework:
                         type: fanout
                     queue:
                         name: support_logger_queue
+                retry_strategy:
+                    max_retries: 3
+                    delay: 1000
+                    multiplier: 2
+                    max_delay: 0
 
             support_fanout_telegram:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
@@ -48,6 +70,18 @@ framework:
                         type: fanout
                     queue:
                         name: support_telegram_queue
+                retry_strategy:
+                    max_retries: 3
+                    delay: 1000
+                    multiplier: 2
+                    max_delay: 0
+
+            failed:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    queue:
+                        name: failed_messages_queue
+
         routing:
             'App\Message\SupportRequestMessage':
                 - support_tech
