@@ -1,7 +1,11 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
-    secret: '%env(APP_SECRET)%'
-
+    messenger:
+        transports:
+            support_tech:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    auto_setup: true
     # Note that the session will be started ONLY if you read or write from it.
     session: true
 

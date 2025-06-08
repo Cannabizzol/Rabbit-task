@@ -1,89 +1,62 @@
 framework:
     messenger:
-        failure_transport: failed
-
         transports:
             support_tech:
-                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                dsn: '%env(MESSENGER_TRANSPORT_DSN_SUPPORT_TECH)%'
                 options:
                     exchange:
                         name: support_topic_exchange
                         type: topic
-                    queue:
-                        name: support_tech_queue
-                    routing_key: 'support.tech.high'
-                retry_strategy:
-                    max_retries: 3
-                    delay: 1000
-                    multiplier: 2
-                    max_delay: 0
+                    queues:
+                        support_tech_queue:
+                            binding_keys: [ 'support.tech.*' ]
 
             support_finance:
-                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                dsn: '%env(MESSENGER_TRANSPORT_DSN_SUPPORT_FINANCE)%'
                 options:
                     exchange:
                         name: support_topic_exchange
                         type: topic
-                    queue:
-                        name: support_finance_queue
-                    routing_key: 'support.finance.low'
-                retry_strategy:
-                    max_retries: 3
-                    delay: 1000
-                    multiplier: 2
-                    max_delay: 0
+                    queues:
+                        support_finance_queue:
+                            binding_keys: [ 'support.finance.*' ]
 
             support_management:
-                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                dsn: '%env(MESSENGER_TRANSPORT_DSN_SUPPORT_MANAGEMENT)%'
                 options:
                     exchange:
                         name: support_topic_exchange
                         type: topic
-                    queue:
-                        name: support_management_queue
-                    routing_key: 'support.management.*'
-                retry_strategy:
-                    max_retries: 3
-                    delay: 1000
-                    multiplier: 2
-                    max_delay: 0
+                    queues:
+                        support_management_queue:
+                            binding_keys: [ 'support.management.*' ]
 
             support_fanout:
-                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                dsn: '%env(MESSENGER_TRANSPORT_DSN_SUPPORT_FANOUT)%'
                 options:
                     exchange:
                         name: support_fanout_exchange
                         type: fanout
-                    queue:
-                        name: support_logger_queue
-                retry_strategy:
-                    max_retries: 3
-                    delay: 1000
-                    multiplier: 2
-                    max_delay: 0
+                    queues:
+                        support_fanout_queue: ~
 
             support_fanout_telegram:
-                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                dsn: '%env(MESSENGER_TRANSPORT_DSN_SUPPORT_FANOUT_TELEGRAM)%'
                 options:
                     exchange:
                         name: support_fanout_exchange
                         type: fanout
-                    queue:
-                        name: support_telegram_queue
-                retry_strategy:
-                    max_retries: 3
-                    delay: 1000
-                    multiplier: 2
-                    max_delay: 0
+                    queues:
+                        support_fanout_telegram_queue: ~
 
             failed:
-                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                dsn: '%env(MESSENGER_TRANSPORT_DSN_FAILED)%'
                 options:
                     exchange:
                         name: failed_exchange
                         type: direct
-                    queue:
-                        name: failed_messages_queue
+                    queues:
+                        failed_queue: ~
 
         routing:
             'App\Message\SupportRequestMessage':
