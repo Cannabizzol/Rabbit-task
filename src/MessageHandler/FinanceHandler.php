@@ -6,7 +6,7 @@ use App\Message\SupportRequestMessage;
 use App\Service\SupportRequestMessageLoader;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-#[AsMessageHandler]
+#[AsMessageHandler(fromTransport: 'support_finance')]
 class FinanceHandler
 {
 

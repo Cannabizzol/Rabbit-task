@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\SupportRequest;
 use App\Message\SupportRequestMessage;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Service\SupportQueueTester;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Messenger\Bridge\Amqp\Transport\AmqpStamp;
@@ -56,4 +57,11 @@ final class SupportRequestController extends AbstractController
             ->setMessage($data['message']);
     }
 
+    #[Route('/support/test', name: 'app_support_test_queues')]
+    public function testQueues(SupportQueueTester $tester): JsonResponse
+    {
+        $tester->sendTestMessages();
+
+        return new JsonResponse(['status' => 'Test messages sent']);
+    }
 }

@@ -15,7 +15,7 @@ class SupportRequestMessageLoader
     {
     }
 
-    public function load(string $id): SupportRequest
+    public function load(string $id): ?SupportRequest
     {
         return $this->supportRequestRepository->find($id);
     }
