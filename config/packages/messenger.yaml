@@ -9,7 +9,13 @@ framework:
                         type: topic
                     queues:
                         support_tech_queue:
-                            binding_keys: [ 'support.tech.*' ]
+                            binding_keys: ['support.tech.high']
+                retry_strategy:
+                    max_retries: 3
+                    delay: 1000
+                    multiplier: 2
+                    max_delay: 10000
+                failure_transport: failed
 
             support_finance:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN_SUPPORT_FINANCE)%'
@@ -19,7 +25,13 @@ framework:
                         type: topic
                     queues:
                         support_finance_queue:
-                            binding_keys: [ 'support.finance.*' ]
+                            binding_keys: ['support.finance.low']
+                retry_strategy:
+                    max_retries: 3
+                    delay: 1000
+                    multiplier: 2
+                    max_delay: 10000
+                failure_transport: failed
 
             support_management:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN_SUPPORT_MANAGEMENT)%'
@@ -29,7 +41,13 @@ framework:
                         type: topic
                     queues:
                         support_management_queue:
-                            binding_keys: [ 'support.management.*' ]
+                            binding_keys: ['support.management.*']
+                retry_strategy:
+                    max_retries: 3
+                    delay: 1000
+                    multiplier: 2
+                    max_delay: 10000
+                failure_transport: failed
 
             support_fanout:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN_SUPPORT_FANOUT)%'
@@ -39,15 +57,6 @@ framework:
                         type: fanout
                     queues:
                         support_fanout_queue: ~
-
-            support_fanout_telegram:
-                dsn: '%env(MESSENGER_TRANSPORT_DSN_SUPPORT_FANOUT_TELEGRAM)%'
-                options:
-                    exchange:
-                        name: support_fanout_exchange
-                        type: fanout
-                    queues:
-                        support_fanout_telegram_queue: ~
 
             failed:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN_FAILED)%'
@@ -59,9 +68,8 @@ framework:
                         failed_queue: ~
 
         routing:
-            'App\Message\SupportRequestMessage':
-                - support_tech
-                - support_finance
-                - support_management
-                - support_fanout
-                - support_fanout_telegram
+#            Можно убрать, потому что написал отдельный класс, который кидает в нужный трансопрт
+#            App\Message\TechSupportRequestMessage: support_tech
+#            App\Message\FinanceSupportRequestMessage: support_finance
+#            App\Message\ManagementSupportRequestMessage: support_management
+            App\Message\SupportRequestMessage: support_fanout

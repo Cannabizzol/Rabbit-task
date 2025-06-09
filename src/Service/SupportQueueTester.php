@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Service;
-use App\Message\SupportRequestMessage;
+use App\Message\ManagementSupportRequestMessage;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Bridge\Amqp\Transport\AmqpStamp;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -21,7 +21,7 @@ class SupportQueueTester
         ];
 
         foreach ($messagesData as $data) {
-            $message = new SupportRequestMessage($data['id']);
+            $message = new ManagementSupportRequestMessage($data['id']);
             $envelope = new Envelope($message, [new AmqpStamp($data['routingKey'])]);
 
             $this->messageBus->dispatch($envelope);

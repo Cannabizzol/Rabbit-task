@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Message;
-
 use Symfony\Component\Messenger\Attribute\AsMessage;
 
-#[AsMessage(transport: ['support_fanout'])]
-class SupportRequestMessage
+#[AsMessage(transport: ['support_finance'])]
+class FinanceSupportRequestMessage
 {
 
 }

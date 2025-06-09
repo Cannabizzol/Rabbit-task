@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\SupportRequest;
-use App\Message\SupportRequestMessage;
+use App\Message\ManagementSupportRequestMessage;
+use App\Service\SupportMessageBuilder;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Service\SupportQueueTester;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,6 +20,7 @@ final class SupportRequestController extends AbstractController
     public function __construct(
         private EntityManagerInterface $entityManager,
         private MessageBusInterface    $messageBus,
+        private SupportMessageBuilder $supportMessageBuilder,
     )
     {
     }
@@ -29,19 +31,10 @@ final class SupportRequestController extends AbstractController
         $data = json_decode($request->getContent(), true);
 
         $supportRequest = $this->createSupportRequest($data);
-
-        $routingKey = sprintf(
-            'support.%s.%s',
-            $supportRequest->getType(),
-            $supportRequest->getPriority());
+        $envelope = $this->supportMessageBuilder->build($supportRequest);
 
         $this->entityManager->persist($supportRequest);
         $this->entityManager->flush();
-
-        $envelope = new Envelope(
-            new SupportRequestMessage((string)$supportRequest->getId()),
-            [new AmqpStamp($routingKey)]
-        );
 
         $this->messageBus->dispatch($envelope);
 

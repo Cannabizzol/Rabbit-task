@@ -16,5 +16,24 @@ services:
         resource: '../src/'
 #        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+        # Хендлеры для бизнес-логики — все привязаны к одному транспорту support_topic
+#    App\MessageHandler\TechHandler:
+#            tags:
+#                - { name: messenger.message_handler, from_transport: support_topic }
+#
+#    App\MessageHandler\FinanceHandler:
+#            tags:
+#                - { name: messenger.message_handler, from_transport: support_topic }
+#
+#    App\MessageHandler\ManagementHandler:
+#            tags:
+#                - { name: messenger.message_handler, from_transport: support_topic }
+#
+#        # Хендлеры для fanout обменников — отдельные транспорты
+#    App\MessageHandler\LoggerHandler:
+#            tags:
+#                - { name: messenger.message_handler, from_transport: support_fanout }
+#
+#    App\MessageHandler\TelegramBotHandler:
+#            tags:
+#                - { name: messenger.message_handler, from_transport: support_fanout_telegram }

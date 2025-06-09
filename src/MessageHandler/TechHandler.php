@@ -2,11 +2,11 @@
 
 namespace App\MessageHandler;
 
-use App\Message\SupportRequestMessage;
+use App\Message\ManagementSupportRequestMessage;
 use App\Service\SupportRequestMessageLoader;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-#[AsMessageHandler]
+#[AsMessageHandler(fromTransport: 'support_tech')]
 class TechHandler
 {
     public function __construct(
@@ -14,7 +14,7 @@ class TechHandler
     )
     {
     }
-    public function __invoke(SupportRequestMessage $message)
+    public function __invoke(ManagementSupportRequestMessage $message)
     {
         $messageFromBd = $this->supportRequestMessageLoader->load($message->requestId);
     }
