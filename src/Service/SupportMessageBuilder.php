@@ -12,12 +12,6 @@ use Symfony\Component\Messenger\Stamp\TransportNamesStamp;
 
 class SupportMessageBuilder
 {
-//    App\Message\TechSupportRequestMessage: support_tech
-//App\Message\FinanceSupportRequestMessage: support_finance
-//App\Message\ManagementSupportRequestMessage: support_management
-//App\Message\ManagementSupportRequestMessage:
-//- support_fanout
-//- support_fanout_telegram
     private const array MESSAGES = [
         'tech' => TechSupportRequestMessage::class,
         'finance' => FinanceSupportRequestMessage::class,
