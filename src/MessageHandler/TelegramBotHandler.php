@@ -10,13 +10,13 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 class TelegramBotHandler
 {
     public function __construct(
-        private SupportRequestMessageLoader $supportRequestMessageLoader
+        private readonly SupportRequestMessageLoader $supportRequestMessageLoader
     )
     {
     }
 
     public function __invoke(ManagementSupportRequestMessage $message)
     {
-        $messageFromBd = $this->supportRequestMessageLoader->load($message->requestId);
+        $messageFromBd = $this->supportRequestMessageLoader->load($message->getRequestId());
     }
 }

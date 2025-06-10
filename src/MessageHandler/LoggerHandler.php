@@ -11,14 +11,14 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 class LoggerHandler
 {
     public function __construct(
-        private LoggerInterface $logger,
-        private SupportRequestMessageLoader $supportRequestMessageLoader
+        private readonly LoggerInterface             $logger,
+        private readonly SupportRequestMessageLoader $supportRequestMessageLoader
     )
     {
     }
     public function __invoke(ManagementSupportRequestMessage $message)
     {
-        $messageFromBd = $this->supportRequestMessageLoader->load($message->requestId);
-        $this->logger->info('Что-то там залогали'. $message->requestId);
+        $messageFromBd = $this->supportRequestMessageLoader->load($message->getRequestId());
+        $this->logger->info('Что-то там залогали'. $message->getRequestId());
     }
 }
