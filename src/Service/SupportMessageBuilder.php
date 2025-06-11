@@ -3,6 +3,8 @@
 namespace App\Service;
 
 use App\Entity\SupportRequest;
+use App\Enum\SupportMessages;
+use App\Enum\SupportTransport;
 use App\Message\FinanceSupportRequestMessage;
 use App\Message\ManagementSupportRequestMessage;
 use App\Message\TechSupportRequestMessage;
@@ -12,46 +14,43 @@ use Symfony\Component\Messenger\Stamp\TransportNamesStamp;
 
 class SupportMessageBuilder
 {
-    private const array MESSAGES = [
-        'tech' => TechSupportRequestMessage::class,
-        'finance' => FinanceSupportRequestMessage::class,
-        'management' => ManagementSupportRequestMessage::class,
-    ];
-    private const array TRANSPORTS = [
-        'tech' => 'support_tech',
-        'finance' => 'support_finance',
-        'management' => 'support_management',
-    ];
-
     public function build(SupportRequest $supportRequest): ?Envelope
     {
+        $messageEnum = match ($supportRequest->getType()) {
+            'tech' => SupportMessages::TECH,
+            'finance' => SupportMessages::FINANCE,
+            'management' => SupportMessages::MANAGEMENT,
+        };
+        if ($messageEnum === null) {
+            return null;
+        }
+
         $routingKey = sprintf(
             'support.%s.%s',
             $supportRequest->getType(),
             $supportRequest->getPriority());
 
-        foreach (self::MESSAGES as $messageType => $class) {
-            if ($messageType === $supportRequest->getType()) {
-                return new Envelope(
-                    new $class((string)$supportRequest->getId()),
-                    [
-                        new AmqpStamp($routingKey),
-                        new TransportNamesStamp($this->getTransports($supportRequest->getType())),
-                    ]
-                );
-            }
+        return new Envelope(
+            new $messageEnum->value((string)$supportRequest->getId()),
+            [
+                new AmqpStamp($routingKey),
+                new TransportNamesStamp($this->getTransports($supportRequest->getType())),
+            ]);
 
-        }
-
-        return null;
     }
 
     private function getTransports(string $type): array
     {
-        $transports = [
-            'support_fanout',
+        $map = [
+            'tech' => SupportTransport::TECH,
+            'finance' => SupportTransport::FINANCE,
+            'management' => SupportTransport::MANAGEMENT,
         ];
-        $transports[] = self::TRANSPORTS[$type];
+
+        $transports = [SupportTransport::FANOUT->value];
+        if (isset($map[$type])) {
+            $transports[] = $map[$type]->value;
+        }
 
         return $transports;
     }
